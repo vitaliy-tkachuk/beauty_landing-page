@@ -1,5 +1,9 @@
 # Responsive layout of Beauty Salon Landing Page
 
+### View demo:
+
+- [Live Demo](https://vitfl.github.io/beauty_landing-page/)
+
 ### Used technologies:
 
 - HTML 5, CSS 3 (with Sass preprocessor), Bootstrap 4, JavaScript, jQuery
