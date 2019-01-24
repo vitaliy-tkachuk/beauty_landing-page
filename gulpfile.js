@@ -11,9 +11,14 @@ var gulp = require("gulp"),
   cache = require("gulp-cache"),
   autoprefixer = require("gulp-autoprefixer"),
   ftp = require("vinyl-ftp"),
-  notify = require("gulp-notify");
+  notify = require("gulp-notify"),
+  deploy = require("gulp-gh-pages");
 
 // Скрипты проекта
+
+gulp.task("gh-pages", function() {
+  return gulp.src("./dist/**/*").pipe(deploy());
+});
 
 gulp.task("common-js", function() {
   return gulp
