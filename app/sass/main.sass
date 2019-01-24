@@ -1,0 +1,820 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+
+*
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+	&:before, &:after
+		-webkit-box-sizing: border-box
+		-moz-box-sizing: border-box
+		box-sizing: border-box
+
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+
+html, body
+	height: 100%
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.65
+	font-family: $default-font
+	overflow-x: hidden
+	opacity: 1
+	&.ishome
+		.site-header
+			min-height: 700px
+			height: 100vh
+			background-color: $dark
+			color: #fff
+			.top-line
+				padding-top: 40px
+				position: absolute
+				width: 100%
+				z-index: 1
+
+//Preloader BEGIN
+.preloader
+	position: fixed
+	top: 0
+	left: 0
+	bottom: 0
+	right: 0
+	background-color: #151515
+	z-index: 100
+@mixin opacity($opacity)
+	opacity: $opacity / 100
+	filter: alpha(opacity=$opacity)
+.pulse
+	position: relative
+	left: 50%
+	top: 50vh
+	margin:
+		left: -40px
+		top: -40px
+	&:before, &:after
+		content: ''
+		border: 5px solid #323232
+		width: 80px
+		height: 80px
+		border-radius: 500px
+		position: absolute
+	&:before
+		animation: pulse-outer .8s ease-in infinite
+	&:after
+		animation: pulse-inner .8s linear infinite
+
+@keyframes pulse-outer
+	0%
+		@include opacity(100)
+	50%
+		@include opacity(50)
+	100%
+		@include opacity(0)
+
+@keyframes pulse-inner
+	0%
+		transform: scale(0)
+		@include opacity(0)
+	100%
+		transform: scale(1)
+		@include opacity(100)
+
+//Preloader END		
+
+.h1, .h2, .h3, .h4, .h5, .h6
+	line-height: 1.4
+	text-transform: uppercase	
+
+.button
+	display: inline-block
+	border: none
+	color: #fff
+	text-decoration: none
+	background-color: $accent
+	padding: 15px 45px
+	font-size: 13px
+	text-transform: uppercase
+	font-weight: 600
+	letter-spacing: 3px
+	border-radius: 2px
+	text-align: center
+	position: relative
+	outline: none
+	transition: background-color .1s ease
+	cursor: pointer
+	&::after
+		transition: background-color .2s ease
+		position: absolute
+		content: ''
+		height: 4px
+		bottom: 0
+		width: 100%
+		background-color: darken($accent, 50%)
+		opacity: .18
+		border-bottom-left-radius: 2px
+		border-bottom-right-radius: 2px
+		left: 0
+	&:focus, &:hover
+		text-decoration: none
+		color: #fff
+	&:hover
+		background-color: lighten($accent, 5%)
+		&::after
+			opacity: .22
+	&:active
+		background-color: darken($accent, 5%)
+		&::after
+			opacity: .32
+	&.button-white
+		background-color: #fff
+		color: #444
+		&::after
+			background-color: rgba(#000, .6)
+		&:hover
+			&::after
+				background-color: rgba(#000, .2)
+		&:active
+			&::after
+				background-color: rgba(#000, .4)
+
+.text-center
+	text-align: center
+
+a
+	color: $accent
+a, button
+	outline: none
+
+.logo
+	img 
+		width: 125px
+		height: auto
+		margin-left: 45px
+
+.phone
+	position: absolute
+	right: 85px
+	top: 44px
+	font-family: firasans, sans-serif
+	font-size: 22px
+	white-space: nowrap
+	.fa
+		color: #555555
+		font-size: 22px
+		margin-right: 3px
+
+section, header
+	position: relative
+	background-size: cover
+	background-position: center	
+
+section 
+	background-color: #fff
+	&.inverse
+		color: #fff
+		background-color: $dark
+		&.s-contact
+			background-color: #fff
+	.h2	
+		font-size: 30px
+		font-weight: 800
+		color: $accent
+		span 
+			color: #fff
+
+
+
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+
+.hamburger
+	right: 0
+	position: absolute
+	top: 34px
+	z-index: 1
+	.hamburger-box
+		width: 34px
+.hamburger-inner, .hamburger-inner::after, .hamburger-inner::before
+	border-radius: 0
+	width: 34px
+	height: 2px
+	background-color: #eee
+
+.mm-navbar 
+	height: auto
+	position: relative
+	border: none
+	.mm-listitem
+		border: none
+	.mm-navbar__title 
+		padding: 0
+		margin: 0
+		img
+			width: 128px
+			height: auto
+			margin: 5px 0 35px
+
+html.mm-wrapper_opened
+	overflow-y: scroll
+
+.mm-panels > .mm-panel.mm-panel_has-navbar
+	right: -18px
+
+.mm-listitem:after
+	display: none
+
+.mm-menu_theme-black .mm-listitem_selected>a:not(.mm-btn_next), .mm-menu_theme-black .mm-listitem_selected>span
+	background-color: transparent
+	color: $accent
+
+.mm-panel:after, .mm-panel:before
+	height: 0
+
+.mm-panels>.mm-panel>.mm-listview:first-child, .mm-panels>.mm-panel>.mm-navbar+.mm-listview
+	margin-top: 0
+
+.mm-listview 
+	> li 
+		> a
+			transition: color .25s ease
+			padding: 
+				left: 14%
+				right: 14%
+				top: 8px
+			&:hover
+				color: $accent
+				&::before
+					color: $accent
+			&::before
+				content: '\f219'
+				font-family: fontawesome
+				margin-right: 8px
+				text-decoration: none
+				font-size: 12px
+				color: #fff
+				transition: color .25s ease
+		&.active
+			&>a	
+				color: $accent
+				
+
+.header-flex
+	display: flex
+	height: 100%
+	position: relative
+
+.flex-center
+	margin: auto
+
+.header-composition
+	text-align: center
+	position: relative
+	.button
+		margin-top: 20px
+	p
+		margin-top: 40px
+
+.welcome
+	p 
+		font-size: 14px
+		text-transform: uppercase
+		display: flex
+		align-items: center
+		white-space: nowrap
+		margin: 0
+		margin-bottom: -10px
+		span	
+			margin: 0 10px
+		&::before, &::after
+			content: ''
+			height: 1px
+			width: 100%
+			position: relative
+			background-color: #fff
+			display: inline-block
+	.h1
+		font-weight: 100
+		font-size: 70px
+		margin: 0
+		line-height: 1.6
+		border-bottom: 1px solid
+		white-space: nowrap					
+	strong
+		display: block
+		text-transform: uppercase
+		font-size: 17px
+		margin-top: 25px
+		.fa
+			margin-right: 10px
+			font-size: 12px
+			color: #555	
+			
+			&:last-child
+				margin-left: 10px
+				margin-right: inherit
+	
+
+.header-social
+	position: absolute
+	display: flex
+	right: 0
+	height: 100%
+	border-left: rgba(#fff, .1) 1px solid
+	top: 0
+	padding: 0 12.5px
+
+.social
+	margin: auto
+	ul,li 
+		margin: 0
+		padding: 0
+		list-style-type: none
+	a 
+		color: #2c2c2c 
+		font-size: 17px
+		display: block
+		background-color: rgba(#fff, .2)
+		height: 38px
+		width: 38px
+		text-align: center
+		margin: 18px 0
+		line-height: 38px
+		border-radius: 10em
+		transition: background-color .25s ease
+		&:hover
+			background-color: rgba(#fff, .4)
+
+.bottom-line
+	position: absolute
+	bottom: 0
+	left: 0
+	border-top: rgba(#fff, .15) 1px solid
+	padding: 12.5px 0
+	width: 100%
+	background-color: rgba(#151515, .15)
+	.fa
+		margin-right: 5px
+		color: #555
+	.phone-h
+		font-family: firasans,sans-serif
+		text-align: center
+
+
+$colors: $blue, $red, $accent
+@for $i from 1 through length($colors)
+	.carousel-services .owl-item:nth-child(#{length($colors)}n+#{$i})
+		background-color: nth($colors, $i)
+
+.carousel-services
+	background-color: $dark
+
+	&-item
+		color: #fff
+		font-size: 18px
+		font-weight: 300
+		position: relative
+		display: flex
+		flex-direction: column-reverse
+		&:hover
+			.carousel-services-image
+				opacity: 1
+		.carousel-logo
+			text-align: center
+			img 
+				width: 100px
+				height: auto
+				display: inline-block
+
+	.owl-item
+		&:nth-child(2n+2)
+			.carousel-services-item
+				flex-direction: column
+	&-image 
+		background-size: cover
+		background-position: center
+		opacity: .7
+		transition: opacity .5s ease
+
+	&-description
+		position: relative
+		padding: 60px 10%
+
+	&-composition
+		margin: auto
+		text-align: center
+		width: 100%
+		.h3
+			font-weight: 800
+			font-size: 28px
+			margin-top: 5px
+			margin-bottom: 20px
+			span 
+				font-weight: 300
+				font-size: 18px
+				display: block
+	&-list 
+		margin: 0
+		padding: 0
+		list-style-type: none
+		margin-bottom: 25px
+		li
+			padding: 9px
+			border-bottom: 1px solid rgba(#000, .12)
+			&:last-child
+				border-bottom: none
+			strong
+				font-family: firasans, sans-serif
+				color: #4a4a4a
+
+	.owl-nav
+		position: absolute
+		top: 0
+		width: 100%
+		button.owl-prev, button.owl-next
+			background-color: #fff
+			color: $dark
+			font-size: 26px
+			height: 64px
+			line-height: 64px
+			position: absolute
+			text-align: center
+			width: 64px
+		button.owl-next
+			right: 0
+
+
+.owl-carousel
+	.owl-item
+		backface-visibility: inherit
+
+
+.s
+	&-gallery, &-review, &-partners
+		padding: 5% 0
+	
+	&-gallery
+		p
+			margin: 30px 0
+			font-size: 18px
+	&-contact
+		background-size: contain
+		background-repeat: no-repeat
+		background-position: 10%
+		&::before
+			content: ''
+			width: 50%
+			right: 0
+			height: 100%
+			position: absolute
+			background-color: rgba($accent, .92)
+	&-partners.section-overlay
+		&::before
+			background-color: #fff
+		.h2
+			margin-top: 10px
+			span
+				color: $accent
+
+
+
+.section-overlay
+	&::before
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background-color: $overlay
+		opacity: .92
+
+.fotorama
+	background-color: rgba($dark, .4)
+	&__nav
+		&-wrap
+			position: absolute
+			bottom: 15px
+			padding: 0 30px
+			width: 100%
+	&__thumb
+		border: 4px #fff solid
+		transition: border-color .5s ease
+		&-border
+			border-color: #3d3c3c
+	&__active
+		.fotorama__thumb
+			border-color: #3d3c3c
+
+input, textarea, select
+	background-color: transparent
+	border: rgba(#000, .1) 1px solid
+	border-bottom: rgba(#000, .1) 2px solid
+	border-radius: 2px
+	padding: 8px 22px
+	outline: none
+	display: inline-block
+	font-size: 16px
+	color: #333333
+select	
+	padding: 10px 22px
+
+.success
+	display: none
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	text-transform: uppercase
+	font-weight: bold
+	z-index: 10
+	span
+		margin: auto
+	& ~ *
+		transition: all .5s ease
+	&.active
+		& ~ *
+			opacity: .5
+			filter: blur(10px)
+
+.contact-form
+	padding: 25% 0
+	position: relative
+	&-logo
+		img 
+			width: 100px
+			height: auto
+	.form-head
+		margin: 0
+		font-size: 30px
+		color: #fff
+	p
+		margin-top: 0
+	input, textarea, select 
+		color: #fff
+		width: 100%
+		margin-top: 17px
+
+		&::-webkit-input-placeholder
+			color: #fff
+			opacity: 1
+		&::-moz-input-placeholder
+			color: #fff
+			opacity: 1
+		&::-ms-input-placeholder
+			color: #fff
+		
+		option
+			color: #333
+	
+	.button
+		margin-top: 40px
+
+.reviews
+	text-align: center
+
+	.owl-dots
+		width: 100%
+		text-align: center
+		margin-top: 60px
+		.owl-dot
+			width: 8px
+			height: 8px
+			background-color: #ffffff
+			border-radius: 10em
+			display: inline-block
+			margin: 5px
+			transition: background-color .5s ease, transform .5s ease 
+			&.active
+				background-color: $accent
+				transform: scale(1.3)
+
+.review
+	margin-top: 20px
+	&-header
+		font-family: 'Times New Roman', serif
+		font-style: italic
+		font-size: 30px
+		font-weight: bold
+	&-date
+		font-family: 'Times New Roman', serif
+		font-style: italic
+		font-size: 15px
+		color: #888
+	&-stars
+		margin: 18px 0 30px
+		font-size: 14px
+		color: $accent
+		.fa
+			margin: 0 2.5px
+	&-text
+		color: #95989a
+		font-style: italic
+
+
+
+
+
+
+.quotes
+	position: absolute
+	width: 100%
+	&::before, &::after
+		content: ',,'
+		position: absolute
+		//top: 182px
+		font-size: 56px
+		color: $accent
+		font-family: 'Times New Roman', serif
+		font-weight: bold
+		line-height: 0
+		transform: rotate(180deg)
+		display: block
+	&::before
+		top: 180px
+		left: -60px
+	&::after
+		top: 155px
+		right: -60px
+		transform: rotate(0)
+	
+		
+
+.partners
+	.partner
+		height: 100%
+		display: flex
+		margin: auto
+	.owl-stage
+		display: flex
+	.owl-item
+		margin-top: 30px
+		img
+			max-width: 100%
+			width: auto
+			display: inline-block
+			margin: auto 
+	.owl-nav
+		position: absolute
+		top: 0
+		width: 100%
+		z-index: 2
+		> button
+			position: absolute
+			top: 50px
+			color: #999
+			transition: opacity .5s ease
+			&:hover
+				opacity: .6
+			&.owl-prev
+				left: -60px
+				font-size: 30px
+			&.owl-next
+				right: -60px
+				font-size: 30px
+
+
+.main-footer
+	background-color: #242424
+	padding: 3% 0
+	color: #fff
+	font-size: 14px
+
+.footer-column
+	margin: 15px 0
+
+.logo-footer
+	width: 125px
+	height: auto
+	+ p
+		color: #666
+		padding: 0
+		margin-bottom: 15px
+		margin-top: 15px
+		font-size: 14px
+
+.footer-social
+	margin-top: 38px
+	.social
+		li
+			display: inline-block
+			margin: 3px
+			a
+				color: #ababab
+				margin-bottom: 0
+				transition: color .5s ease, background-color .5s ease
+				&:hover
+					color: rgba(#fff, .8)
+
+.footer-menu
+	ul
+		padding: 0
+		margin: 0
+		list-style-type: none
+		li.active 
+			a
+				color: $accent
+				&::before
+					color: $accent
+		a
+			color: #979797
+			transition: color .25s ease
+			display: inline-block
+			padding: 3.5px 0
+			text-decoration: underline
+			padding-left: 20px
+			position: relative
+			&:hover, &:focus
+				color: $accent
+				&::before
+					color: $accent
+			&::before
+				position: absolute
+				font-family: fontawesome
+				content: '\f219'
+				left: 0
+				font-size: 12px
+				color: #fff
+				transition: color .5s ease
+				top: 6px
+
+.footer-address
+	position: relative
+	font-size: 15px
+	padding-left: 24px
+	margin: 0 0 20px
+	.fa
+		position: absolute
+		left: 0
+		top: 5px
+		font-size: 18px
+		color: #555
+	
+	.footer-phone
+		font-size: 26px
+		font-family: firasans, sans-serif
+		padding-top: 10px
+		display: block
+		white-space: nowrap
+		.fa
+			top: 22px
+			font-size: 22px
+			left: 2px
+#gmap_canvas
+	color: #000
+	max-height: 200px
+	opacity: .7
+	transition: opacity .5s ease
+	&:hover
+		opacity: 1
+
+//Hiding buttons on gmap
+.gmnoprint
+	display: none
+
+.top
+	position: fixed
+	bottom: 25px
+	right: -100px
+	background-color: #e0e0e0
+	z-index: 12
+	border-radius: 10em
+	color: #666
+	font-size: 26px
+	width: 50px
+	height: 50px
+	text-align: center
+	line-height: 50px
+	cursor: pointer
+	transition: all .3s ease
+	opacity: .5
+	&:hover
+		color: #fff
+		background-color: $accent
+		opacity: 1
+	&.active
+		right: 25px
+
+@import "media"
