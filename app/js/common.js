@@ -1,162 +1,150 @@
 $(document).ready(function() {
-  $("#my-menu").mmenu({
-    extensions: [
-      "widescreen",
-      "theme-black",
-      "effect-menu-slide",
-      "pagedim-black",
-      "position-right"
-    ],
+  $('#my-menu').mmenu({
+    extensions: ['widescreen', 'theme-black', 'effect-menu-slide', 'pagedim-black', 'position-right'],
     navbar: {
-      title: '<img src="img/logo-1.svg" alt="Beauty salon S&Mitler">'
-    }
+      title: '<img src="img/logo-1.svg" alt="Beauty salon S&Mitler">',
+    },
   });
 
-  var api = $("#my-menu").data("mmenu");
+  var api = $('#my-menu').data('mmenu');
   api
-    .bind("opened", function() {
-      $(".hamburger").addClass("is-active");
+    .bind('open:finish', function() {
+      $('.hamburger').addClass('is-active');
     })
-    .bind("closed", function() {
-      $(".hamburger").removeClass("is-active");
+    .bind('close:finish', function() {
+      $('.hamburger').removeClass('is-active');
     });
 
-  $(".carousel-services").on("initialized.owl.carousel", function() {
+  $('.carousel-services').on('initialized.owl.carousel', function() {
     setTimeout(function() {
       carouselService();
     }, 100);
   });
-  $(".carousel-services").owlCarousel({
+  $('.carousel-services').owlCarousel({
     loop: true,
     nav: true,
     smartSpeed: 700,
-    navText: [
-      '<i class="fa fa-angle-double-left"></i>',
-      '<i class="fa fa-angle-double-right"></i>'
-    ],
+    navText: ['<i class="fa fa-angle-double-left"></i>', '<i class="fa fa-angle-double-right"></i>'],
     responsiveClass: true,
     dots: false,
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       800: {
-        items: 2
+        items: 2,
       },
       1100: {
-        items: 3
-      }
-    }
+        items: 3,
+      },
+    },
   });
 
-  $(".carousel-services-list").equalHeights();
+  $('.carousel-services-list').equalHeights();
 
   function carouselService() {
-    $(".carousel-services-item").each(function() {
+    $('.carousel-services-item').each(function() {
       var this_height = $(this)
-        .find(".carousel-services-description")
+        .find('.carousel-services-description')
         .outerHeight();
       $(this)
-        .find(".carousel-services-image")
-        .css("min-height", this_height);
+        .find('.carousel-services-image')
+        .css('min-height', this_height);
     });
   }
   carouselService();
 
-  $(".carousel-services-composition .h3").each(function() {
+  $('.carousel-services-composition .h3').each(function() {
     $(this).html(
       $(this)
         .html()
-        .replace(/(\S+)\s*$/, "<span>$1</span>")
+        .replace(/(\S+)\s*$/, '<span>$1</span>')
     );
   });
 
-  $("section .h2").each(function() {
+  $('section .h2').each(function() {
     $(this).html(
       $(this)
         .html()
-        .replace(/^(\S+)/, "<span>$1</span>")
+        .replace(/^(\S+)/, '<span>$1</span>')
     );
   });
 
-  $(".reviews").owlCarousel({
+  $('.reviews').owlCarousel({
     loop: true,
     items: 1,
     smartSpeed: 700,
     nav: false,
-    autoHeight: true
+    autoHeight: true,
   });
 
-  $(".partners").owlCarousel({
+  $('.partners').owlCarousel({
     loop: true,
     smartSpeed: 700,
     dots: false,
     nav: true,
-    navText: [
-      '<i class="fa fa-angle-left"></i>',
-      '<i class="fa fa-angle-right"></i>'
-    ],
+    navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
     responsiveClass: true,
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       768: {
-        items: 2
+        items: 2,
       },
       992: {
-        items: 3
+        items: 3,
       },
       1200: {
-        items: 4
-      }
-    }
+        items: 4,
+      },
+    },
   });
 
   $(window).scroll(function() {
     if ($(this).scrollTop() > $(this).height()) {
-      $(".top").addClass("active");
+      $('.top').addClass('active');
     } else {
-      $(".top").removeClass("active");
+      $('.top').removeClass('active');
     }
   });
 
-  $(".top").click(function() {
-    $("html, body")
+  $('.top').click(function() {
+    $('html, body')
       .stop()
-      .animate({ scrollTop: 0 }, "slow", "swing");
+      .animate({ scrollTop: 0 }, 'slow', 'swing');
   });
 
   //E-mail Ajax Send
-  $("form.contact-form").submit(function() {
+  $('form.contact-form').submit(function() {
     //Change
     var th = $(this);
     $.ajax({
-      type: "POST",
-      url: "/mail.php", //Change
-      data: th.serialize()
+      type: 'POST',
+      url: '/mail.php', //Change
+      data: th.serialize(),
     }).done(function() {
       $(th)
-        .find(".success")
-        .addClass("active")
-        .css("display", "flex")
+        .find('.success')
+        .addClass('active')
+        .css('display', 'flex')
         .hide()
         .fadeIn();
       setTimeout(function() {
         // Done Functions
         $(th)
-          .find(".success")
-          .removeClass("active")
+          .find('.success')
+          .removeClass('active')
           .fadeOut();
-        th.trigger("reset");
+        th.trigger('reset');
       }, 3000);
     });
     return false;
   });
 });
 
-$(window).on("load", function() {
-  $(".preloader")
+$(window).on('load', function() {
+  $('.preloader')
     .delay(1000)
-    .fadeOut("slow");
+    .fadeOut('slow');
 });

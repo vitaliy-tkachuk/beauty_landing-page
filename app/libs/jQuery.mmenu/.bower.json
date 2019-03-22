@@ -1,6 +1,6 @@
 {
   "name": "jQuery.mmenu",
-  "version": "7.2.2",
+  "version": "7.3.3",
   "main": [
     "dist/jquery.mmenu.all.js",
     "dist/jquery.mmenu.all.css"
@@ -27,11 +27,11 @@
     "jquery": ">= 1.7.0"
   },
   "homepage": "https://github.com/BeSite/jQuery.mmenu",
-  "_release": "7.2.2",
+  "_release": "7.3.3",
   "_resolution": {
     "type": "version",
-    "tag": "v7.2.2",
-    "commit": "4a7b7f9e0988afd14aa163951a76ceb137290c7e"
+    "tag": "v7.3.3",
+    "commit": "12eb943d3e7e7293c82a4ad74f15890495456dff"
   },
   "_source": "https://github.com/BeSite/jQuery.mmenu.git",
   "_target": "^7.2.2",

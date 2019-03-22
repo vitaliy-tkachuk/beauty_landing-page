@@ -1,8 +1,8 @@
 /*!
- * jQuery mmenu v7.2.2
+ * jQuery mmenu v7.3.3
  * @requires jQuery 1.7.0 or later
  *
- * mmenu.frebsite.nl
+ * mmenujs.com
  *	
  * Copyright (c) Fred Heusschen
  * www.frebsite.nl
@@ -15,7 +15,7 @@
 (function( $ ) {
 
 	const _PLUGIN_  = 'mmenu';
-	const _VERSION_	= '7.2.2';
+	const _VERSION_	= '7.3.3';
 
 
 	//	Newer version of the plugin already excists
@@ -636,7 +636,7 @@
 				$navbar = $( '<div class="' + _c.navbar + '" />' );
 
 			var title: string = this.__getPanelTitle( $panel, this.opts.navbar.title );
-			var href : string = '';
+			var href = '';
 
 			if ( $parent && $parent.length )
 			{
@@ -670,7 +670,7 @@
 				switch ( this.opts.navbar.titleLink )
 				{
 					case 'anchor':
-						href = $a.attr( 'href' );
+						href = $a.attr( 'href' ) || '';
 						break;
 
 					case 'parent':
@@ -733,7 +733,7 @@
 					$b.insertAfter( $a );
 					if ( $a.is( 'span' ) )
 					{
-						$b.addClass( _c.listitem + '__text' ).html( $a.html() );
+						$b.addClass( _c.listitem + '__text ' + $a.attr('class') ).html( $a.html() );
 						$a.remove();
 					}
 				}
@@ -1039,7 +1039,7 @@
 		__getUniqueId: function()
 		{
 			return _c.mm( $[ _PLUGIN_ ].uniqueId++ );
-		},
+		}
 
 		// __hasClass: function( e, c )
 		// {
@@ -1057,10 +1057,6 @@
 		//	First time plugin is fired
 		initPlugin();
 
-		//	Extend options
-		opts = $.extend( true, {}, $[ _PLUGIN_ ].defaults, opts );
-		conf = $.extend( true, {}, $[ _PLUGIN_ ].configuration, conf );
-
 		var $result = $();
 		this.each(
 			function()
@@ -1071,7 +1067,11 @@
 					return;
 				}
 
-				var _menu = new $[ _PLUGIN_ ]( $menu, opts, conf );
+				//	Extend options
+				var optsCopy = jQuery.extend(true, {}, $[ _PLUGIN_ ].defaults, opts),
+					confCopy = jQuery.extend(true, {}, $[ _PLUGIN_ ].configuration, conf);
+
+				var _menu = new $[ _PLUGIN_ ]( $menu, optsCopy, confCopy );
 				_menu.$menu.data( _PLUGIN_, _menu.__api() );
 
 				$result = $result.add( _menu.$menu );
